@@ -224,8 +224,8 @@ class COP2_disassemble(idaapi.IDP_Hooks):
 		insn.Op3.type = ida_ua.o_idpspec1
 		insn.Op3.reg = c
 
-	def decode_type_0(self, insn):
-		insn.Op1.type = o_void
+	def decode_type_0(self, insn, dword):
+		insn.Op1.type = ida_ua.o_void
 
 	def decode_type_1(self, insn, dword):
 		ftreg = (dword >> 0x10) & 0x1F
@@ -314,7 +314,7 @@ class COP2_disassemble(idaapi.IDP_Hooks):
 		insn.Op1.reg = ftreg
 		insn.Op2.type = ida_ua.o_idpspec1
 		insn.Op2.reg = fsreg
-		insn.Op3.type = o_imm
+		insn.Op3.type = ida_ua.o_imm
 		insn.Op3.value = imm
 
 	def decode_type_16(self, insn, dword):
@@ -421,8 +421,8 @@ class COP2_disassemble(idaapi.IDP_Hooks):
 	#	return 0
 
 	def ev_emu_insn(self, insn):
-		if (insn.itype >= ITYPE_START and insn.itype < ITYPE_START + len(self.itable)):
-			return 1
+		#if (insn.itype >= ITYPE_START and insn.itype < ITYPE_START + len(self.itable)):
+		#	return 1
 		return 0
 
 	def decode_reg_field(self, val):
